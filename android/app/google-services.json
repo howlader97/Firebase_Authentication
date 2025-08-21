@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766022526722",
+    "project_id": "authentication-chat-app-da364",
+    "storage_bucket": "authentication-chat-app-da364.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766022526722:android:3f61dce19fbbe6e1d1c41b",
+        "android_client_info": {
+          "package_name": "com.example.firebase_ahthentication_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpww7zc8CmE2IijblktuYn0aNTCM9PUh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
