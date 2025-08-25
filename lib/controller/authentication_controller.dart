@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../home_screen.dart';
 import '../signin_screen.dart';
@@ -8,6 +9,7 @@ import '../signin_screen.dart';
 class AuthenticationController extends GetxController {
   bool inProgress = false;
   FirebaseAuth auth = FirebaseAuth.instance;
+  GoogleSignIn signIn=GoogleSignIn.instance;
 
   Future<void> getResetPassword(String email)async{
     inProgress=true;
@@ -59,6 +61,28 @@ class AuthenticationController extends GetxController {
       inProgress = false;
       update();
     }
+  }
+
+  void continueWithGoogle() async {
+    String webClientId = '766022526722-1846omc3drbkqurjvejugpbq29mp2s03.apps.googleusercontent.com';
+    try {
+      await signIn.initialize(serverClientId: webClientId);
+      GoogleSignInAccount account = await signIn.authenticate();
+      GoogleSignInAuthentication googleAuth = account.authentication;
+      final credential = GoogleAuthProvider.credential(
+          idToken: googleAuth.idToken
+      );
+      inProgress = true;
+      update();
+      await auth.signInWithCredential(credential);
+      Get.offAll(() => HomeScreen());
+    } catch (e) {
+      Get.snackbar('Failed!', e.toString());
+    } finally {
+      inProgress = false;
+      update();
+    }
+
   }
 
 

@@ -154,28 +154,36 @@ class SignInScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                OutlinedButton.icon(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    side: const BorderSide(color: Colors.black12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  icon: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png",
-                    height: 24,
-                    width: 24,
-                  ),
-                  label: Text(
-                    "Sign in with Google",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                  ),
+                GetBuilder<AuthenticationController>(
+                  builder: (googleAuth) {
+                    if(googleAuth.inProgress){
+                      return Center(child: CircularProgressIndicator(),);
+                    }
+                    return OutlinedButton.icon(
+                      onPressed: () {
+                        googleAuth.continueWithGoogle();
+                      },
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        side: const BorderSide(color: Colors.black12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: Image.asset('assets/images/googleIcon.png'
+                        , height: 24,
+                        width: 24,
+                      ),
+                      label: Text(
+                        "Sign in with Google",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    );
+                  }
                 ),
                 const SizedBox(height: 16),
                 Align(
