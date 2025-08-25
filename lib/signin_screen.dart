@@ -1,4 +1,5 @@
 import 'package:firebase_ahthentication_app/controller/authentication_controller.dart';
+import 'package:firebase_ahthentication_app/forget_password_screeen.dart';
 import 'package:firebase_ahthentication_app/home_screen.dart';
 import 'package:firebase_ahthentication_app/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -176,6 +177,12 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.bottomRight,
+                    child: TextButton(onPressed: (){
+                      Get.to(ForgetPasswordScreen());
+                    }, child: Text('Forget password',style: TextStyle(color: Colors.blue,),))),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
